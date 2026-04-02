@@ -5,8 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>M. Yasser | Security Lab</title>
     <meta name="description" content="M. Yasser - Penetration Tester & Red Team Trainee Portfolio">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:;">
+    
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; object-src 'none'; base-uri 'self'; form-action 'self'; connect-src 'self';">
+    
     <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Space+Grotesk:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -338,7 +343,7 @@
                     <p>A lightweight Python-based KVM-style mouse sharing tool. Controls a remote Windows PC mouse over the network using low-latency UDP sockets and Win32 APIs.</p>
                 </div>
                 <div class="project-links">
-                    <a href="https://github.com/mohamedyasserisme" target="_blank">
+                    <a href="https://github.com/mohamedyasserisme" target="_blank" rel="noopener noreferrer">
                         <span class="icon"><svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></span>
                         Source Code
                     </a>
@@ -437,10 +442,10 @@
                 <h3 style="font-size:1.5rem;margin-bottom:1rem;">Let's Talk Security.</h3>
                 <p>Whether you need a security assessment, want to discuss red team strategies, or have an opportunity, feel free to drop a message. All communications are strictly confidential.</p>
                 <div class="social-links">
-                    <a href="https://github.com/mohamedyasserisme" target="_blank" class="social-link" aria-label="GitHub">
+                    <a href="https://github.com/mohamedyasserisme" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="GitHub">
                         <span class="icon"><svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></span>
                     </a>
-                    <a href="https://www.linkedin.com/in/mohamed-yasser-613b77297/" target="_blank" class="social-link" aria-label="LinkedIn">
+                    <a href="https://www.linkedin.com/in/mohamed-yasser-613b77297/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn">
                         <span class="icon"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></span>
                     </a>
                 </div>
@@ -460,7 +465,8 @@
                         <textarea id="message" class="form-control" required placeholder="Describe your project or inquiry..."></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">
-                        <span class="icon" id="sendIcon"><svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></span>
+                        <span class="icon" id="sendIconDefault"><svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></span>
+                        <span class="icon" id="sendIconSuccess" style="display:none;"><svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
                         <span id="sendText">Transmit Message</span>
                     </button>
                 </form>
@@ -571,7 +577,11 @@ var textToType = "Junior Penetration Tester | Red Team Trainee @ IT Gate";
 var typingEl = document.getElementById("typing-text");
 var charIndex = 0;
 function typeText() {
-    if (charIndex < textToType.length) { typingEl.innerHTML += textToType.charAt(charIndex); charIndex++; setTimeout(typeText, 50); }
+    if (charIndex < textToType.length) { 
+        typingEl.textContent += textToType.charAt(charIndex); 
+        charIndex++; 
+        setTimeout(typeText, 50); 
+    }
 }
 setTimeout(typeText, 500);
 
@@ -584,15 +594,21 @@ backToTop.addEventListener('click', function() { window.scrollTo({ top: 0, behav
 document.getElementById('secureForm').addEventListener('submit', function(e) {
     e.preventDefault();
     var btn = this.querySelector('button');
-    var sendIcon = document.getElementById('sendIcon');
+    var sendIconDefault = document.getElementById('sendIconDefault');
+    var sendIconSuccess = document.getElementById('sendIconSuccess');
     var sendText = document.getElementById('sendText');
-    sendIcon.innerHTML = '<svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+    
+    sendIconDefault.style.display = 'none';
+    sendIconSuccess.style.display = 'inline-flex';
+    
     sendText.textContent = 'Message Secured & Sent';
+    
     btn.style.background = '#27c93f'; btn.style.borderColor = '#27c93f'; btn.style.color = '#000';
     var form = this;
     setTimeout(function() {
         form.reset();
-        sendIcon.innerHTML = '<svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>';
+        sendIconDefault.style.display = 'inline-flex';
+        sendIconSuccess.style.display = 'none';
         sendText.textContent = 'Transmit Message';
         btn.style.background = ''; btn.style.borderColor = ''; btn.style.color = '';
     }, 3000);
