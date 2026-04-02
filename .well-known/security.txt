@@ -1,4 +1,1 @@
-Contact: mailto:mohamedmodymedo2003@gmail.com
-Expires: 2027-04-02T00:00:00.000Z
-Preferred-Languages: en, ar
-OpenBugBounty: https://openbugbounty.org/bugbounty/real_bugz/
+Contact: mailto:mohamedmodymedo2003@gmail.comEncryption:Acknowledgements:Policy:Signature:Hiring:OpenBugBounty: https://openbugbounty.org/bugbounty/real_bugz/
