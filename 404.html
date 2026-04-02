@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Target Not Found</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Space+Grotesk:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        :root {
+            --bg-main: #030712;
+            --text-main: #f8fafc;
+            --accent-cyan: #00ffcc;
+            --accent-red: #ff3366;
+            --glow-red: 0 0 20px rgba(255, 51, 102, 0.3);
+            --glow-cyan: 0 0 20px rgba(0, 255, 204, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            /* Cyber Grid Background */
+            background-image: 
+                linear-gradient(rgba(255, 51, 102, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 51, 102, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .error-container {
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .glitch-wrapper {
+            position: relative;
+            margin-bottom: 1rem;
+        }
+
+        .error-code {
+            font-size: 8rem;
+            font-weight: 700;
+            font-family: 'Fira Code', monospace;
+            color: var(--accent-red);
+            text-shadow: var(--glow-red);
+            line-height: 1;
+            margin: 0;
+        }
+
+        .error-message {
+            font-family: 'Fira Code', monospace;
+            font-size: 1.2rem;
+            color: #94a3b8;
+            margin-bottom: 2.5rem;
+        }
+
+        .terminal {
+            background: #0f172a;
+            border: 1px solid rgba(255, 51, 102, 0.3);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            text-align: left;
+            max-width: 500px;
+            margin: 0 auto 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .terminal p {
+            font-family: 'Fira Code', monospace;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .prompt { color: var(--accent-red); }
+        .text-cyan { color: var(--accent-cyan); }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: rgba(0, 255, 204, 0.1);
+            color: var(--accent-cyan);
+            border: 1px solid var(--accent-cyan);
+            border-radius: 0.25rem;
+            font-family: 'Fira Code', monospace;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: var(--glow-cyan);
+        }
+
+        .btn:hover {
+            background: var(--accent-cyan);
+            color: var(--bg-main);
+            transform: translateY(-2px);
+            box-shadow: 0 0 30px rgba(0, 255, 204, 0.5);
+        }
+
+        /* Glitch Animation */
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        .cursor {
+            display: inline-block;
+            width: 8px;
+            height: 1.2em;
+            background-color: var(--accent-red);
+            vertical-align: middle;
+            animation: blink 1s step-end infinite;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="error-container">
+        <div class="glitch-wrapper">
+            <h1 class="error-code">404</h1>
+        </div>
+        
+        <div class="terminal">
+            <p><span class="prompt">root@server:~$</span> cd /requested_directory</p>
+            <p style="color: #ef4444;">bash: cd: /requested_directory: No such file or directory</p>
+            <p><span class="prompt">root@server:~$</span> ./scan_status.sh</p>
+            <p style="color: #94a3b8;">[!] Target directory does not exist or access is denied.</p>
+            <p style="color: #94a3b8;">[!] Connection logged and flagged.</p>
+            <p><span class="prompt">root@server:~$</span> <span class="cursor"></span></p>
+        </div>
+
+        <a href="/" class="btn">
+            <i data-lucide="terminal-square"></i> Return to Base (Home)
+        </a>
+    </div>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
